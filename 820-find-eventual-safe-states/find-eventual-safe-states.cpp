@@ -1,39 +1,36 @@
 class Solution {
 public:
-    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
-        int n=graph.size();
-        vector<vector<int>> adj(n);
-        vector<int> indegree(n,0);
-        for(int i=0;i<n;i++){
-            for(auto &it : graph[i]){
-                indegree[i]++;
-                adj[it].push_back(i);
+    bool dfs(vector<vector<int>> &adj,int i,vector<bool> &vis,vector<bool> &pathvis, vector<bool> &isSafe){
+        vis[i]=true;
+        pathvis[i]=true;
+        for(auto &it : adj[i]){
+            if(!vis[it]){
+                if(dfs(adj,it,vis,pathvis,isSafe)){
+                    return true;
+                }
             }
-        }
-        vector<bool> vis(n,false);
-        queue<int> q;    
-        for(int i=0;i<n;i++){
-            if(indegree[i]==0){
-                q.push(i);
-                vis[i]=true;
+            else if(pathvis[it]){
+                    return true;
             }
         }
 
-        while(!q.empty()){
-            auto node=q.front();
-            q.pop();
-            for(auto &it : adj[node]){
-                indegree[it]--;
-                if(indegree[it]==0){
-                    q.push(it);
-                    vis[it]=true;
-                }
+        pathvis[i]=false;
+        isSafe[i]=true;
+        return false;
+    }
+
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<bool> vis(n,false),pathvis(n,false),isSafe(n,false);
+        for(int i=0;i<n;i++){
+            if(!vis[i]){
+                dfs(graph,i,vis,pathvis,isSafe);
             }
         }
 
         vector<int> ans;
         for(int i=0;i<n;i++){
-            if(vis[i]){
+            if(isSafe[i]){
                 ans.push_back(i);
             }
         }
