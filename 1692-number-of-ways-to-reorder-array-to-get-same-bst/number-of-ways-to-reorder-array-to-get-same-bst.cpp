@@ -17,7 +17,7 @@ public:
     }
 
     int numOfWays(vector<int>& nums) {
-        int n=nums.size();
+        int n=nums.size()-1;
         vector<vector<long long>> dp(n+1,vector<long long>(n+1,0));
         dp[0][0]=1;
         for(int i=1;i<=n;i++){
