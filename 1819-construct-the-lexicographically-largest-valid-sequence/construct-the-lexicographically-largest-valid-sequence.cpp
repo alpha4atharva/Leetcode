@@ -1,21 +1,21 @@
 class Solution {
 public:
-    bool rec(vector<int> &ans,int n,set<int> &placed,int idx){
+    bool rec(vector<int> &ans,int n,vector<bool> &vis,int idx){
         while(idx<ans.size() && ans[idx]!=-1)  idx++;
         if(idx==ans.size()) return true;
 
         for(int i=n;i>=1;i--){
-            if(placed.find(i)==placed.end()){
+            if(!vis[i]){
                 int j=(i==1?idx:idx+i);
                 if(j<ans.size() && ans[j]==-1){
                     ans[idx]=ans[j]=i;
-                    placed.insert(i); 
+                    vis[i]=true;
 
-                    if(rec(ans,n,placed,idx+1))   return true;
+                    if(rec(ans,n,vis,idx+1))   return true;
 
                     //Backtrack
                     ans[idx]=ans[j]=-1;
-                    placed.erase(i);
+                    vis[i]=false;
                 }
             }
         }
@@ -24,8 +24,8 @@ public:
 
     vector<int> constructDistancedSequence(int n) {
         vector<int> ans(2*n-1,-1);
-        set<int> placed;
-        rec(ans,n,placed,0);
+        vector<bool> vis(n+1,false);
+        rec(ans,n,vis,0);
         return ans;
     }
 };
