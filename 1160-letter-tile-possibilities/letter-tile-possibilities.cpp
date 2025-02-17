@@ -1,24 +1,21 @@
 class Solution {
-private:
-    set<string> st;
 public:
-    void rec(string &tiles,vector<bool> vis,string temp){
-        st.insert(temp);
-        for(int i=0;i<tiles.size();i++){
-            if(!vis[i]){
-                vis[i]=true;
-                temp+=tiles[i];
-                rec(tiles,vis,temp);
-                vis[i]=false;
-                temp.pop_back();
+    int dfs(unordered_map<char,int> &mp){
+        int count=0;
+        for(auto &it : mp){
+            if(it.second>0){
+                it.second--;
+                count+=1+dfs(mp);
+                it.second++;
             }
         }
+        return count;
     }
 
     int numTilePossibilities(string tiles) {
-        int n=tiles.size();
-         vector<bool> vis(n,false);
-         rec(tiles,vis,"");
-         return st.size()-1;
+        unordered_map<char,int> mp;
+        for(auto &c:tiles)  mp[c]++;
+
+        return dfs(mp);
     }
 };
