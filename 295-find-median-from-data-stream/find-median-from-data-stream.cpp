@@ -1,8 +1,8 @@
 class MedianFinder {
 private:
-    priority_queue<int> left;
-    priority_queue<int,vector<int>,greater<>> right;
-    int l=0,r=0;
+    priority_queue<int> left; // max heap for left half of array
+    priority_queue<int,vector<int>,greater<>> right; // min heap for right part of array
+    int l=0,r=0; // size of both heaps
 public:
     MedianFinder() {
         
@@ -36,11 +36,11 @@ public:
     }
     
     double findMedian() {
-        if((l+r)%2==0){
+        if((l+r)%2==0){ // even size
             double x=left.top(),y=right.top();
             return (x+y)/2.0;
         }
-        else{
+        else{ // odd size
             return right.top();
         }
     }
