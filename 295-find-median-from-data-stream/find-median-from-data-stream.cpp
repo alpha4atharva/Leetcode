@@ -36,7 +36,6 @@ public:
     }
     
     double findMedian() {
-        cout<<l<<r;
         if((l+r)%2==0){
             double x=left.top(),y=right.top();
             return (x+y)/2.0;
