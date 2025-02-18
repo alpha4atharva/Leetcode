@@ -1,29 +1,33 @@
-typedef long long ll;
 class Solution {
 public:
     int nthUglyNumber(int n) {
-        priority_queue<ll,vector<ll>,greater<>> pq;
-        set<ll> st;
-        st.insert(1);
+        priority_queue<long, vector<long>, greater<long>> pq; // Min-heap
+        unordered_set<long> seen; // To avoid duplicates
+
         pq.push(1);
-        ll ans=1;
-        for(int i=0;i<n;i++){
-            ans=pq.top();
+        seen.insert(1);
+        
+        long ugly = 1; // Stores the nth ugly number
+
+        for (int i = 0; i < n; i++) {
+            ugly = pq.top();
             pq.pop();
-            if(st.count(2*ans)==0){
-                st.insert(2*ans);
-                pq.push(2*ans);
+            
+            // Generate next ugly numbers
+            if (seen.find(ugly * 2) == seen.end()) {
+                pq.push(ugly * 2);
+                seen.insert(ugly * 2);
             }
-            if(st.count(3*ans)==0){
-                st.insert(3*ans);
-                pq.push(3*ans);
+            if (seen.find(ugly * 3) == seen.end()) {
+                pq.push(ugly * 3);
+                seen.insert(ugly * 3);
             }
-            if(st.count(5*ans)==0){
-                st.insert(5*ans);
-                pq.push(5*ans);
+            if (seen.find(ugly * 5) == seen.end()) {
+                pq.push(ugly * 5);
+                seen.insert(ugly * 5);
             }
         }
 
-        return ans;
+        return ugly;
     }
 };
