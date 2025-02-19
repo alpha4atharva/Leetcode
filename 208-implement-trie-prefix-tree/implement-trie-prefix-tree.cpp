@@ -27,23 +27,18 @@ public:
         node->isWord=true;
     }
     
-    bool search(string word) {
+    bool search(string word,bool c=false) {
         TrieNode *node=root;
         for(auto c:word){
             if(!node->child[c-'a']) return false;
             node=node->child[c-'a'];
         }
 
-        return node->isWord;
+        return node->isWord||c;
     }
     
     bool startsWith(string prefix) {
-        TrieNode *node=root;
-        for(auto c:prefix){
-            if(!node->child[c-'a']) return false;
-            node=node->child[c-'a'];
-        }
-        return true;
+        return search(prefix,true);
     }
 };
 
