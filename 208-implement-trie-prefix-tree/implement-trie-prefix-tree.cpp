@@ -18,9 +18,8 @@ public:
     void insert(string word) {
         TrieNode *node=root;
         for(auto c:word){
-            if(!node->child[c-'a']){
+            if(!node->child[c-'a'])
                 node->child[c-'a']=new TrieNode();
-            }
             node=node->child[c-'a'];
         }
         node->isWord=true;
