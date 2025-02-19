@@ -4,7 +4,9 @@ public:
     bool isWord;
     TrieNode(){
         isWord=false;
-        for(int i=0;i<26;i++)   child[i]=NULL;
+        for(int i=0;i<26;i++){
+            child[i]=NULL;
+        }
     }
 };
 
