@@ -11,25 +11,16 @@
  */
 class FindElements {
     unordered_map<int,int> mp;
-    void dfs(TreeNode* root){
+    void dfs(TreeNode* root,int v){
         if(root==NULL)  return;
-        int v=root->val;
-        if(root->left){
-            root->left->val=2*v+1;
-            mp[2*v+1]++;
-            dfs(root->left);
-        }
-        if(root->right){
-            root->right->val=2*v+2;
-            mp[2*v+2]++;
-            dfs(root->right);
-        }
+        root->val=v;
+        mp[v]++;
+        dfs(root->left,2*v+1);
+        dfs(root->right,2*v+2);
     }
 public:
     FindElements(TreeNode* root) {
-        root->val=0;
-        mp[0]++;
-        dfs(root);
+        dfs(root,0);
     }
     
     bool find(int target) {
