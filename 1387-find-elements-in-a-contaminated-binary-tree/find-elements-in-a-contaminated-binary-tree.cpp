@@ -10,21 +10,31 @@
  * };
  */
 class FindElements {
-    set<int> st;
-public:
-    void dfs(TreeNode *root,int v){
+    unordered_map<int,int> mp;
+    void dfs(TreeNode* root){
         if(root==NULL)  return;
-        root->val=v;
-        st.insert(v);
-        dfs(root->left,2*v+1);
-        dfs(root->right,2*v+2);
+        int v=root->val;
+        if(root->left){
+            root->left->val=2*v+1;
+            mp[2*v+1]++;
+            dfs(root->left);
+        }
+        if(root->right){
+            root->right->val=2*v+2;
+            mp[2*v+2]++;
+            dfs(root->right);
+        }
     }
+public:
     FindElements(TreeNode* root) {
-        dfs(root,0);
+        root->val=0;
+        mp[0]++;
+        dfs(root);
     }
     
     bool find(int target) {
-        return st.count(target);
+        if(mp.find(target)!=mp.end())   return true;
+        return false;
     }
 };
 
