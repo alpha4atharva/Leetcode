@@ -45,16 +45,19 @@ public:
             d++;
         }
 
+        // Path of bob from node to 0
         vector<int> path;
         path.push_back(bob);
         vis=vector<bool> (n+1,false);
         vis[bob]=true;
         dfs(adj,path,bob,vis);
+        // Reward Alice can get at a node
         for(int i=0;i<path.size();i++){
             if(i==dis[path[i]]) amount[path[i]]/=2;
             else if(i<dis[path[i]]) amount[path[i]]=0;
         }
         
+        // Calculating maximum reward
         vis=vector<bool>(n+1,false);
         int ans=INT_MIN;
         queue<pair<int,int>> q;
