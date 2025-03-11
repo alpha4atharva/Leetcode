@@ -4,6 +4,7 @@ public:
         int n=s.length();
         int ans=0,i=0,j=0;
         unordered_map<char,int> mp;
+        // //sliding window
         // while(i<n){
         //     mp[s[i]]++;
         //     while(mp.size()==3){
@@ -15,6 +16,7 @@ public:
         //     i++;
         // }
 
+        //tracking last occurence of chars
         for(i=0;i<n;i++){
             mp[s[i]]=i+1;
             ans+=min({mp['a'],mp['b'],mp['c']});
