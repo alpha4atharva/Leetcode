@@ -1,9 +1,9 @@
 class Solution {
 public:
-    vector<int> parent, minPathCost;
-    int findRoot(int node) {
-        if (parent[node] != node) {
-            parent[node] = findRoot(parent[node]);
+    vector<int> parent,minPathCost;
+    int findRoot(int node){
+        if(parent[node]!=node){
+            parent[node]=findRoot(parent[node]);
         }
         return parent[node];
     }
@@ -31,7 +31,7 @@ public:
         }
 
         vector<int> result;
-        for(auto& q : query) {
+        for(auto& q : query){
             int start=q[0],end=q[1];
 
             if(start==end) result.push_back(0);
