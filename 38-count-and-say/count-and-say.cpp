@@ -3,19 +3,21 @@ public:
     string func(string str){
         string ans="";
         char curr=str[0];
-        int count=1;
-        for(int i=1;i<str.length();i++){
-            if(str[i]==str[i-1]){
+        int i=0,count=0;
+        while(i<str.length()){
+            if(curr==str[i]){
                 count++;
             }
             else{
                 ans+=to_string(count);
                 ans+=str[i-1];
+                curr=str[i];
                 count=1;
             }
+            i++;
         }
         ans+=to_string(count);
-        ans+=str.back();
+        ans+=str[i-1];
 
         return ans;
     }
