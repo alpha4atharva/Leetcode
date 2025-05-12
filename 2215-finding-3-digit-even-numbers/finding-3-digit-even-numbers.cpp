@@ -9,7 +9,7 @@ public:
                 for(int j=0;j<n;j++){
                     if(j!=i){
                         for(int k=0;k<n;k++){
-                            if(k!=j && k!=i){
+                            if(k!=j && k!=i && digits[k]!=0){
                                 s.insert(num+10*digits[j]+100*digits[k]);
                             }
                         }
@@ -20,9 +20,9 @@ public:
 
         vector<int> ans;
         for(auto it:s){
-            if(it>99){
+            //if(it>99){
                 ans.push_back(it);
-            }
+            //}
         }
 
         return ans;
