@@ -28,7 +28,6 @@ public:
         }
 
         int a=stoi(s1),b=stoi(s2);
-        cout<<a<<" "<<b;
         return a-b;
     }
 };
