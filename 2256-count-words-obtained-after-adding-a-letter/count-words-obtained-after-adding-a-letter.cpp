@@ -1,7 +1,7 @@
 class Solution {
 public:
     int wordCount(vector<string>& start, vector<string>& target) {
-        set<string> s;
+        unordered_set<string> s;
         for(int i=0;i<start.size();i++){
             string str="00000000000000000000000000";
             for(auto c:start[i]){
