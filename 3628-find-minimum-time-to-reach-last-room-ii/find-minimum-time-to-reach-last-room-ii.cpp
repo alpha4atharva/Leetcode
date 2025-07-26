@@ -4,15 +4,15 @@ public:
     int minTimeToReach(vector<vector<int>>& moveTime) {
         int n=moveTime.size(),m=moveTime[0].size();
         vector<vector<int>>dp(n,vector<int>(m,INT_MAX));
-        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
-        pq.push({0,0,0});
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+        pq.push({0,{0,0}});
         moveTime[0][0]=0;
         while(!pq.empty()){
             auto it=pq.top();
             pq.pop();
-            int ct=it[0];
-            int cr=it[1];
-            int cc=it[2];
+            int ct=it.first;
+            int cr=it.second.first;
+            int cc=it.second.second;
             if(cr==n-1 && cc==m-1) return ct;
             if(ct>=dp[cr][cc]) continue;
             dp[cr][cc]=ct;
@@ -22,7 +22,7 @@ public:
                 int cost=(cr+cc)%2+1;
                 int newTime=max(moveTime[r][c],ct)+cost;
                 if(dp[r][c]>newTime){
-                    pq.push({newTime,r,c});
+                    pq.push({newTime,{r,c}});
                 }
             }
         }
