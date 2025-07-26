@@ -18,9 +18,11 @@ public:
             dp[cr][cc]=ct;
             for(auto it:dir){
                 int r=cr+it.first,c=cc+it.second;
-                if(r>=0 && r<n && c>=0 && c<m && dp[r][c]==INT_MAX){
-                    int cost=(cr+cc)%2+1;
-                    pq.push({max(moveTime[r][c],ct)+cost,r,c});
+                if(r<0 || c<0 || r>=n || c>=m) continue;
+                int cost=(cr+cc)%2+1;
+                int newTime=max(moveTime[r][c],ct)+cost;
+                if(dp[r][c]>newTime){
+                    pq.push({newTime,r,c});
                 }
             }
         }
