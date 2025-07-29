@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maxi=INT_MIN;
+    int maxi=0;
     int c=0;
     void gen(vector<int>&nums,int val,int idx,int n){
         if(idx==n){
