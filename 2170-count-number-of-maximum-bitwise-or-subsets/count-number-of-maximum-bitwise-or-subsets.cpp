@@ -1,9 +1,16 @@
 class Solution {
 public:
-    unordered_map<int,int> mp;
+    int maxi=INT_MIN;
+    int c=0;
     void gen(vector<int>&nums,int val,int idx,int n){
         if(idx==n){
-            mp[val]++;
+            if(val==maxi){
+                c++;
+            }
+            else if(val>maxi){
+                maxi=val;
+                c=1;
+            }
             return;
         }
         gen(nums,val,idx+1,n);
@@ -14,13 +21,6 @@ public:
     int countMaxOrSubsets(vector<int>& nums) {
         int n=nums.size();
         gen(nums,0,0,n);
-        int ans=0,maxi=INT_MIN;
-        for(auto it:mp){
-            if(it.first>maxi){
-                maxi=it.first;
-                ans=it.second;
-            }
-        }
-        return ans;
+        return c;
     }
 };
