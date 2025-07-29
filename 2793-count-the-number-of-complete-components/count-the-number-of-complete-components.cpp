@@ -29,20 +29,29 @@ public:
         int cnt=0;
         for(int i=0;i<n;i++){
             if(vis[i]==0){
-                bfs(adj, comp, vis, i);
+                bfs(adj,comp,vis,i);
                 cnt++;
             }
         }
+        
+        // for(auto &it:comp){
+        //     cout<<it.first<<"->";
+        //     for(int i=0;i<it.second.size();i++){
+        //         cout<<it.second[i]<<"-";
+        //     }
+        //     cout<<endl;
+        // }
+
         int ans=0;
-        for(auto &it : comp){
-            vector<int>& nodes = it.second;
-            int nodeCount = nodes.size();
-            int edgeCount = 0;
-            for(auto &node : nodes){
-                edgeCount += adj[node].size();
+        for(auto &it:comp){
+            vector<int>& nodes=it.second;
+            int nodeCount=nodes.size();
+            int edgeCount=0;
+            for(auto &node:nodes){
+                edgeCount+=adj[node].size();
             }
-            edgeCount /= 2; 
-            if(edgeCount == (nodeCount * (nodeCount - 1)) / 2){
+            edgeCount/=2; 
+            if(edgeCount==(nodeCount*(nodeCount-1))/2){
                 ans++;
             }
         }
