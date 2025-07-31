@@ -13,7 +13,7 @@ public:
             }
 
             all.insert(cur.begin(),cur.end()); //Add all unique ORs for this step to global set.
-            prev=move(cur);              //Set up for next iteration.
+            prev=cur;              //Set up for next iteration.
         }
         return all.size();
     }
