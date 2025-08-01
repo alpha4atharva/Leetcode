@@ -13,6 +13,11 @@ public:
             forces[i]+=force;
         }
 
+        // for(int i=0;i<n;i++){
+        //     cout<<forces[i]<<" ";
+        // }
+        // cout<<endl;
+
         // Right to Left pass (apply leftward forces)
         force=0;
         for(int i=n-1;i>=0;i--){
@@ -21,6 +26,11 @@ public:
             else force=max(force-1,0);
             forces[i]-=force;
         }
+
+        // for(int i=0;i<n;i++){
+        //     cout<<forces[i]<<" ";
+        // }
+        // cout<<endl;
 
         string result;
         for(int f:forces){
