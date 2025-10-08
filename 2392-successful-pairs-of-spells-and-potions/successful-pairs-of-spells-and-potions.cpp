@@ -1,10 +1,10 @@
 class Solution {
 public:
     int bs(vector<int>&arr,long long target,int low,int high) {
-        int result = -1;
-        while(low <= high) {
-            int mid = low + (high -low) / 2;
-            if(arr[mid]>=target) {
+        int result=-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(arr[mid]>=target){
                 result=mid;
                 high=mid-1;
             }
@@ -12,6 +12,7 @@ public:
         }
         return result;
     }
+    
     vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) {
         vector<int>ans;
         int n=potions.size();
