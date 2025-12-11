@@ -10,16 +10,14 @@ public:
         }
         
         vector<bool> a1(build.size(),false),a2(build.size(),false);
-        for(auto &mp:x){
-            auto it=mp.second;
+        for(auto &[mp,it]:x){
             sort(it.begin(),it.end());
             for(int i=1;i<it.size()-1;i++){
                 a1[it[i].second]=true;
             }
         }
 
-        for(auto &mp:y){
-            auto it=mp.second;
+        for(auto &[mp,it]:y){
             sort(it.begin(),it.end());
             for(int i=1;i<it.size()-1;i++){
                 a2[it[i].second]=true;
