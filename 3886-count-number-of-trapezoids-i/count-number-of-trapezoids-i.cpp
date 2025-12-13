@@ -7,7 +7,7 @@ public:
     }
 
     int countTrapezoids(vector<vector<int>>& points) {
-        unordered_map<int,int> mp;
+        map<int,int> mp;
         for(auto &it:points){
             mp[it[1]]++;
         }
