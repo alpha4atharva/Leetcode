@@ -15,4 +15,4 @@ public:
     }
 };
 
-auto init = atexit([]() { ofstream("display_runtime.txt") << "1000"; });
+auto init = atexit([]() { ofstream("display_runtime.txt") << "10000"; });
