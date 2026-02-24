@@ -11,7 +11,6 @@ public:
         }
 
         long long total=pow(2,k);
-        long long size=st.size();
-        return total==size;
+        return total==st.size();
     }
 };
