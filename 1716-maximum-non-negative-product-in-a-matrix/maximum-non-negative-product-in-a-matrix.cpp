@@ -2,7 +2,7 @@ class Solution {
 public:
     long long MOD = 1e9 + 7;
 
-    void processPath(const pair<long long,long long>& child,long long val,long long& cur_max,long long& cur_min){
+    void processPath(pair<long long,long long>& child,long long val,long long& cur_max,long long& cur_min){
         if(child.first!=LLONG_MIN){
             cur_max=max({cur_max,val*child.first,val*child.second});
             cur_min=min({cur_min,val*child.first,val*child.second});
