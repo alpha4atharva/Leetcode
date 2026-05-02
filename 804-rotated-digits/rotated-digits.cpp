@@ -1,5 +1,5 @@
 class Solution {
-    int memo[5][2][2]; // position, isLess, isDiff
+    int memo[4][2][2]; // position, isLess, isDiff
     string s;
 
     int recur(int pos, bool isLess, bool isDiff) {
